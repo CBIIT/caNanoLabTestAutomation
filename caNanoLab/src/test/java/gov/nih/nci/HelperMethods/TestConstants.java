@@ -4,6 +4,7 @@ public class TestConstants
 {
 	public static final String seleniumBrowser = System.getProperty("browser");	//firefox
 	public static final String hostName = System.getProperty("hostName");	    //https://cananolab-qa.nci.nih.gov";
+	public static final String tier = System.getProperty("tier");
 	public static final String seleniumUrl = hostName + "/caNanoLab/";
 
 	public static String curatorUserName = "curatorUserName";

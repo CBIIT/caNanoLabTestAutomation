@@ -16,88 +16,13 @@ import org.junit.*;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class TestSuiteC {
-	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
+import static gov.nih.nci.HelperMethods.TestConstants.*;
+
+public class TestSuiteC
+{
 	private static Logger logger=Logger.getLogger("TestSuite");
-	public static String seleniumBrowser = "firefox";
-	public static String tier = "dev";
-	//public static String HostName = "http://localhost:9090";
-	public static String HostName = "https://cananolab-stage-sg.nci.nih.gov";
-	//public static String HostName = "https://cananolab-qa-sg.nci.nih.gov";
-	//public static String HostName = "http://nciws-q438-v:18080";
-	//public static String HostName = "http://ncias-d1360-v.nci.nih.gov:18080";
-	public static String seleniumUrl = HostName + "/caNanoLab/";	
-	public static String curatorUserName = "curatorUserName";
-	public static String curatorPassword = "curatorPassword";
-	public static String researcherUserName = "researcherUserName";
-	public static String researcherPassword = "researcherPassword";
-		
-	//Application configuration
-	public static String applinkHOME = "HOME";
-	public static String applinkPROTOCOLS = "PROTOCOLS";
-	public static String applinkSAMPLES = "SAMPLES";
-	public static String applinkPUBLICATIONS = "PUBLICATIONS";
-	public static String applinkCURATION = "CURATION";
-	public static String applinkMYWORKSPACE = "MY WORKSPACE";
-	public static String applinkHELP = "HELP";
-	public static String applinkLOGOUT = "LOGOUT";
-	public static String applinkGLOSSARY = "GLOSSARY";
-	public static String applinkCONTACTUS = "CONTACT US";
-	public static String applinkPRIVACYNOTICE = "PRIVACY NOTICE";
-	public static String applinkDISCLAIMER = "DISCLAIMER";
-	public static String applinkACCESSIBILITY = "ACCESSIBILITY";
-	public static String applinkAPPLICATIONSUPPORT = "APPLICATION SUPPORT";
 	
-	public static String applinkcaNanoLabWiki = "caNanoLab Wiki";
-	public static String applinkNCICBIITHome = "NCI CBIIT Home";
-	public static String applinkNCLHome = "NCL Home";
-	public static String applinkNCLCSNHome = "NCL CSN Home";
-	public static String applinkNCINanoAllianceHome = "NCI Nano Alliance Home";
-	public static String applinkNCIHome = "NCI Home";
-	public static String applinkNanotechnologyWorkingGroup = "Nanotechnology Working Group";
-	public static String applinkNanoHubs = "Nano Hubs";
-	public static String applinkDisclaimer = "Disclaimer";
-	public static String applinkNBI = "NBI";
-	public static String applinkNIOSHNIL = "NIOSH NIL";
-	public static String applinkInterNano = "InterNano";
-	public static String applinknanoHUB = "nanoHUB";
-	public static String applinkICON = "ICON";
-	public static String applinkSAFENANO = "SAFENANO";
-	public static String applinkOECD = "OECD";
-	public static String applinkeNanoMapper = "eNanoMapper";
-	public static String applinkNanomaterialRegistry = "Nanomaterial Registry";
-	
-	public static String applinkFAQ = "FAQ";
-	public static String applinkOnlineHelp = "Online Help";
-	public static String applinkSearchProtocols = "Search Protocols";
-	public static String applinkSearchSamples = "Search Samples";
-	public static String applinkSearchPublications = "Search Publications";
-	public static String applinkDownload = "download";
-	public static String applinkReleaseNotes = "caNanoLab Release Notes";
-	
-	//How to Section
-	public static String applinkHowDoISubmitData = "How do I submit data into caNanoLab?";
-	public static String applinkHowDoIIncorporate = "How do I incorporate caNanoLab into a data sharing plan?";
-	public static String applinkHowDoIFindNanotechnologyProtocols = "How do I find nanotechnology protocols?";
-	public static String applinkHowDoIFindNanotechnologyPublications = "How do I find Nanotechnology publications?";
-	public static String applinkHowCanISearchForNanomaterials = "How can I search for nanomaterials?";
-	public static String applinkHowCanISearchForNanomaterialsCharacterizations = "How can I search for nanomaterial characterizations?";
-	public static String applinkHowCanIGetDefinitionsFor = "Where can I get definitions for nanotechnology concepts?";
-	
-	//Application Confirmation Message
-	public static String registrationSubmitConfMessage = "Your registration request has been sent to the administrator for assignment of your User ID and Password. You should receive this information via e-mail within one business day from time of submission.";
-	public static String sampleSubmitConfMessage = "";
-	public static String publicationSubmitConfMessage = "";
-	public static String protocolSubmitConfMessage = "";
-	public static String appWelcomeMessage = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal. caNanoLab is a data sharing portal designed to facilitate information sharing across the international biomedical nanotechnology research community to expedite and validate the use of nanotechnology in biomedicine. caNanoLab allows researchers to share information on nanomaterials by normalizing the format of publication-quality data, including details often unavailable in the published form, and centralizing its storage. These data include the composition of the nanomaterial, its functions (e.g. therapeutic, targeting, diagnostic imaging), its characterizations from physico-chemical (e.g. size, molecular weight, surface), in vitro (e.g. cytotoxicity, blood contact) and in vivo (e.g. animal toxicity and efficacy) nanomaterial assays, and the protocols of these assays.\n\nThe diagram below illustrates the caNanoLab functionality and workflow. \"Active links\" are provided that allows a user to directly navigate to the appropriate function based on the authorization level of the user. In particular, the Sample Submission workflow allows direct launching points to develop caNanoLab data files from a user's inputs. Navigation is also available through the menus above.";
-	
-	//Application CSS Configuration
-	public static String appCSSUserActions = "td.sidebarContent";
-	
-	public TestSuiteC(){
-		BaseTestMethods.appRelease = "cananoLab v2.1";
-		BaseTestMethods.releaseDesc = "caNanoLab v2.1 is refactored using AngularJS as the Front-end framework and JAVA REST services as the middle-tier";
-	}	
+	static BaseNanoLabMethods Test = new BaseNanoLabMethods();	
 	
 	//S.N.: 101
 	//Test Name: ensureStrutsHasBeenRemovedFromManageBatchDataAvailabilityPage
@@ -111,11 +36,11 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.clickPageLinks("Manage Batch Data Availability", "Manage Batch Data Availability");
-			String manageBatchDataAvailabilityURL = HostName + "/caNanoLab/#/batchDataAvailability";
+			String manageBatchDataAvailabilityURL = hostName + "/caNanoLab/#/batchDataAvailability";
 			Test.verifyUrl(manageBatchDataAvailabilityURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -145,7 +70,7 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String HomePageURL = HostName + "/caNanoLab/#/home";
+			String HomePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(HomePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.verifyPage(By.cssSelector(".contentTitle tbody tr th"), "Manage Curation");
@@ -171,7 +96,7 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String HomePageURL = HostName + "/caNanoLab/#/home";
+			String HomePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(HomePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.verifyLink(By.linkText("Review Data Pending Release to Public"));
@@ -196,7 +121,7 @@ public class TestSuiteC {
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
-			String HomePageURL = HostName + "/caNanoLab/#/home";
+			String HomePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(HomePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.verifyLink(By.linkText("Manage Batch Data Availability"));
@@ -227,7 +152,7 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String HomePageURL = HostName + "/caNanoLab/#/home";
+			String HomePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(HomePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.verify_user_able_to_submit_generate_data_availability_for_all_samples_search();
@@ -709,7 +634,7 @@ public class TestSuiteC {
 			Test.wait_until_my_protocols_table_data_load();
 			Test.wait_until_my_publications_table_data_load();
 			Test.Ensure_User_can_view_samples_protocols_and_publications_and_use_back_button_from_view_page();
-			String samplePageURL = HostName + "/caNanoLab/#/myWorkspace";
+			String samplePageURL = hostName + "/caNanoLab/#/myWorkspace";
 			Test.verifyUrl(samplePageURL);		
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -735,10 +660,10 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("PUBLICATIONS", "Manage Publications");
-			String publicationSearchURL = HostName + "/caNanoLab/#/managePublications";
+			String publicationSearchURL = hostName + "/caNanoLab/#/managePublications";
 			Test.verifyUrl(publicationSearchURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -762,11 +687,11 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("PUBLICATIONS", "Manage Publications");
 			Test.clickPageLinks("Search Existing Publications", "Publication Search");
-			String publicationSearchURL = HostName + "/caNanoLab/#/searchPublication";
+			String publicationSearchURL = hostName + "/caNanoLab/#/searchPublication";
 			Test.verifyUrl(publicationSearchURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -791,7 +716,7 @@ public class TestSuiteC {
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.clickMenubarLinks("PUBLICATIONS", "Manage Publications");
 			Test.clickPageLinks("Submit a New Publication", "Submit Publication");
-			String publicationSearchURL = HostName + "/caNanoLab/#/submitPublication";
+			String publicationSearchURL = hostName + "/caNanoLab/#/submitPublication";
 			Test.verifyUrl(publicationSearchURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -816,7 +741,7 @@ public class TestSuiteC {
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.clickMenubarLinks("PUBLICATIONS", "Manage Publications");
 			Test.clickPageLinks("Search for Samples by Publication", "Sample Search by Publication");
-			String publicationSearchURL = HostName + "/caNanoLab/#/searchSamplesByPublication";
+			String publicationSearchURL = hostName + "/caNanoLab/#/searchSamplesByPublication";
 			Test.verifyUrl(publicationSearchURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -1098,10 +1023,10 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("PROTOCOLS", "Manage Protocols");
-			String manageCurationURL = HostName + "/caNanoLab/#/manageProtocols";
+			String manageCurationURL = hostName + "/caNanoLab/#/manageProtocols";
 			Test.verifyUrl(manageCurationURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -1125,11 +1050,11 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("PROTOCOLS", "Manage Protocols");
 			Test.clickPageLinks("Submit a New Protocol", "Submit Protocol");
-			String manageCurationURL = HostName + "/caNanoLab/#/submitProtocol";
+			String manageCurationURL = hostName + "/caNanoLab/#/submitProtocol";
 			Test.verifyUrl(manageCurationURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -1153,11 +1078,11 @@ public class TestSuiteC {
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = HostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/home";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("PROTOCOLS", "Manage Protocols");
 			Test.clickPageLinks("Search Existing Protocols", "Protocol Search");
-			String manageCurationURL = HostName + "/caNanoLab/#/searchProtocol";
+			String manageCurationURL = hostName + "/caNanoLab/#/searchProtocol";
 			Test.verifyUrl(manageCurationURL);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -1169,9 +1094,7 @@ public class TestSuiteC {
 		}			
 	}
 	
-	
 	// Search Protocols
-	
 	//S.N.: 141 ---
 	//Test Name: 001_Verify_the_ability_to_Search_Protocols_as_a_Curator
 	@Test
