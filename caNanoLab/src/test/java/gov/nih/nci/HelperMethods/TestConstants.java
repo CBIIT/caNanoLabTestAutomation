@@ -2,8 +2,9 @@ package gov.nih.nci.HelperMethods;
 
 public class TestConstants
 {
-	public static final String HOST_NAME = "hostName";
-	public static final String BROWSER = "browser";
+	public static final String seleniumBrowser = System.getProperty("browser");	//firefox
+	public static final String hostName = System.getProperty("hostName");	    //https://cananolab-qa.nci.nih.gov";
+	public static final String seleniumUrl = hostName + "/caNanoLab/";
 
 	public static String curatorUserName = "curatorUserName";
 	public static String curatorPassword = "curatorPassword";

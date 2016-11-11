@@ -15,16 +15,6 @@ public class FunctionalSmokeTest
 	private static Logger logger = Logger.getLogger("TestSuite");
 
 	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
-	
-	private String seleniumBrowser;	//firefox
-	private String hostName;	//https://cananolab-qa.nci.nih.gov";
-	public String seleniumUrl;	
-	
-	public FunctionalSmokeTest(){
-		BaseTestMethods.appRelease = "cananoLab v2.2";
-		BaseTestMethods.releaseDesc = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal.";
-	}	
-
 
 	//S.N.: 1
 	//Test Name: 003_Login_as_Researcher
@@ -1105,9 +1095,7 @@ public class FunctionalSmokeTest
 	@Before
 	public void setup()
 	{
-		seleniumBrowser = System.getProperty(BROWSER);
-		hostName = System.getProperty(HOST_NAME);
-		seleniumUrl = hostName + "/caNanoLab/";
+
 	}
 
 	@After

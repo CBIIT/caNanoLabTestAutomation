@@ -28,12 +28,6 @@ public class TestSuiteB
 	private String hostName;	//https://cananolab-qa.nci.nih.gov";
 	public String seleniumUrl;
 
-	public TestSuiteB()
-	{
-		BaseTestMethods.appRelease = "cananoLab v2.1";
-		BaseTestMethods.releaseDesc = "caNanoLab v2.1 is refactored using AngularJS as the Front-end framework and JAVA REST services as the middle-tier";
-	}	
-
 	//S.N.: 51
 	//Test Name: 009_verify_sample_search_by_characterization_type
 	@Test
@@ -1216,9 +1210,6 @@ public class TestSuiteB
 	@Before
 	public void setup()
 	{
-		seleniumBrowser = System.getProperty(BROWSER);
-		hostName = System.getProperty(HOST_NAME);
-		seleniumUrl = hostName + "/caNanoLab/";
 	}
 
 	@After

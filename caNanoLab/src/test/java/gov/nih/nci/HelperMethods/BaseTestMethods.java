@@ -60,8 +60,8 @@ public class BaseTestMethods
 	public static final String timeout = "120000";
 	public static String seleniumBrowser;
 	public static String seleniumUrl;
-	public static String appRelease;
-	public static String releaseDesc;
+	public static String appRelease = "cananoLab v2.2";
+	public static String releaseDesc = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal.";
 	public static int speed = 50;
 	public String pdfFileName;
 	public String finalPdfFileName;

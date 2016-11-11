@@ -21,19 +21,9 @@ import static gov.nih.nci.HelperMethods.TestConstants.*;
 
 public class TestSuiteA
 {
-	private static Logger logger=Logger.getLogger("TestSuite");
+	private static Logger logger = Logger.getLogger("TestSuite");
 
 	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
-
-	private String seleniumBrowser;	//firefox
-	private String hostName;	//https://cananolab-qa.nci.nih.gov";
-	public String seleniumUrl;
-
-	public TestSuiteA(){
-		BaseTestMethods.appRelease = "cananoLab v2.1";
-		BaseTestMethods.releaseDesc = "caNanoLab v2.1 is refactored using AngularJS as the Front-end framework and JAVA REST services as the middle-tier";
-	}	
-
 
 	//S.N.: 1
 	//Test Name: 003_Login_as_Researcher
@@ -1190,9 +1180,7 @@ public class TestSuiteA
 	@Before
 	public void setup()
 	{
-		seleniumBrowser = System.getProperty(BROWSER);
-		hostName = System.getProperty(HOST_NAME);
-		seleniumUrl = hostName + "/caNanoLab/";
+
 	}
 
 	@After
