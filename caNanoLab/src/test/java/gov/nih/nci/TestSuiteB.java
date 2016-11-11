@@ -16,87 +16,20 @@ import org.junit.*;
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import static gov.nih.nci.HelperMethods.TestConstants.*;
+
 public class TestSuiteB
 {
-	private static Logger logger=Logger.getLogger("TestSuite");
+	private static Logger logger = Logger.getLogger("TestSuite");
 
 	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
-
-	private static final String HOST_NAME = "hostName";
-	private static final String BROWSER = "browser";
 
 	private String seleniumBrowser;	//firefox
 	private String hostName;	//https://cananolab-qa.nci.nih.gov";
 	public String seleniumUrl;
-	
-	public static String curatorUserName = "curatorUserName";
-	public static String curatorPassword = "curatorPassword";
-	public static String researcherUserName = "researcherUserName";
-	public static String researcherPassword = "researcherPassword";
-		
-	//Application configuration
-	public static String applinkHOME = "HOME";
-	public static String applinkPROTOCOLS = "PROTOCOLS";
-	public static String applinkSAMPLES = "SAMPLES";
-	public static String applinkPUBLICATIONS = "PUBLICATIONS";
-	public static String applinkCURATION = "CURATION";
-	public static String applinkMYWORKSPACE = "MY WORKSPACE";
-	public static String applinkHELP = "HELP";
-	public static String applinkLOGOUT = "LOGOUT";
-	public static String applinkGLOSSARY = "GLOSSARY";
-	public static String applinkCONTACTUS = "CONTACT US";
-	public static String applinkPRIVACYNOTICE = "PRIVACY NOTICE";
-	public static String applinkDISCLAIMER = "DISCLAIMER";
-	public static String applinkACCESSIBILITY = "ACCESSIBILITY";
-	public static String applinkAPPLICATIONSUPPORT = "APPLICATION SUPPORT";
-	
-	public static String applinkcaNanoLabWiki = "caNanoLab Wiki";
-	public static String applinkNCICBIITHome = "NCI CBIIT Home";
-	public static String applinkNCLHome = "NCL Home";
-	public static String applinkNCLCSNHome = "NCL CSN Home";
-	public static String applinkNCINanoAllianceHome = "NCI Nano Alliance Home";
-	public static String applinkNCIHome = "NCI Home";
-	public static String applinkNanotechnologyWorkingGroup = "Nanotechnology Working Group";
-	public static String applinkNanoHubs = "Nano Hubs";
-	public static String applinkDisclaimer = "Disclaimer";
-	public static String applinkNBI = "NBI";
-	public static String applinkNIOSHNIL = "NIOSH NIL";
-	public static String applinkInterNano = "InterNano";
-	public static String applinknanoHUB = "nanoHUB";
-	public static String applinkICON = "ICON";
-	public static String applinkSAFENANO = "SAFENANO";
-	public static String applinkOECD = "OECD";
-	public static String applinkeNanoMapper = "eNanoMapper";
-	public static String applinkNanomaterialRegistry = "Nanomaterial Registry";
-	
-	public static String applinkFAQ = "FAQ";
-	public static String applinkOnlineHelp = "Online Help";
-	public static String applinkSearchProtocols = "Search Protocols";
-	public static String applinkSearchSamples = "Search Samples";
-	public static String applinkSearchPublications = "Search Publications";
-	public static String applinkDownload = "download";
-	public static String applinkReleaseNotes = "caNanoLab Release Notes";
-	
-	//How to Section
-	public static String applinkHowDoISubmitData = "How do I submit data into caNanoLab?";
-	public static String applinkHowDoIIncorporate = "How do I incorporate caNanoLab into a data sharing plan?";
-	public static String applinkHowDoIFindNanotechnologyProtocols = "How do I find nanotechnology protocols?";
-	public static String applinkHowDoIFindNanotechnologyPublications = "How do I find Nanotechnology publications?";
-	public static String applinkHowCanISearchForNanomaterials = "How can I search for nanomaterials, composition annotations, and characterizations?";
-	public static String applinkHowCanISearchForNanomaterialsCharacterizations = "How can I add nanomaterial characterizations?";
-	public static String applinkHowCanIGetDefinitionsFor = "Where can I get definitions for nanotechnology concepts?";
 
-	//Application Confirmation Message
-	public static String registrationSubmitConfMessage = "Your registration request has been sent to the administrator for assignment of your User ID and Password. You should receive this information via e-mail within one business day from time of submission.";
-	public static String sampleSubmitConfMessage = "";
-	public static String publicationSubmitConfMessage = "";
-	public static String protocolSubmitConfMessage = "";
-	public static String appWelcomeMessage = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal. caNanoLab is a data sharing portal designed to facilitate information sharing across the international biomedical nanotechnology research community to expedite and validate the use of nanotechnology in biomedicine. caNanoLab allows researchers to share information on nanomaterials by normalizing the format of publication-quality data, including details often unavailable in the published form, and centralizing its storage. These data include the composition of the nanomaterial, its functions (e.g. therapeutic, targeting, diagnostic imaging), its characterizations from physico-chemical (e.g. size, molecular weight, surface), in vitro (e.g. cytotoxicity, blood contact) and in vivo (e.g. animal toxicity and efficacy) nanomaterial assays, and the protocols of these assays.\n\nThe diagram below illustrates the caNanoLab functionality and workflow. \"Active links\" are provided that allows a user to directly navigate to the appropriate function based on the authorization level of the user. In particular, the Sample Submission workflow allows direct launching points to develop caNanoLab data files from a user's inputs. Navigation is also available through the menus above.";
-	
-	//Application CSS Configuration
-	public static String appCSSUserActions = "td.sidebarContent";
-	
-	public TestSuiteB(){
+	public TestSuiteB()
+	{
 		BaseTestMethods.appRelease = "cananoLab v2.1";
 		BaseTestMethods.releaseDesc = "caNanoLab v2.1 is refactored using AngularJS as the Front-end framework and JAVA REST services as the middle-tier";
 	}	
@@ -125,7 +58,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}
 	}
-	
+
 	//S.N.: 52
 	//Test Name: 011_Verify_the_ability_to_search_non_publically_available_samples_when_logged_in_as_curator
 	@Test
@@ -152,7 +85,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}		
 	}
-	
+
 	//S.N.: 53
 	//Test Name: 012_Verify_that_searching_for_non_public_sample_results_in_no_search_results_for_public_users
 	@Test
@@ -176,7 +109,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}		
 	}
-	
+
 	//S.N.: 54
 	//Test Name: 012_Verify_that_searching_for_non_public_sample_results_in_no_search_results_for_public_users
 	@Test
@@ -225,7 +158,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 56
 	//Test Name: 001_Verify_that_publically_available_sample_details_summary_can_be_viewed
 	@Test
@@ -276,7 +209,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}		
 	}
-	
+
 	//S.N.: 58
 	//Test Name: 003_Verify_that_a_researcher_can_only_view_sample_details_for_samples_that_he_has_readonly_access
 	@Test
@@ -307,7 +240,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}		
 	}
-	
+
 	//S.N.: 59
 	//Test Name: 015_verify_that_clicking_on_public_results_from_home_page_returns_sample_search_results_for_all_public_samples
 	@Test
@@ -332,7 +265,7 @@ public class TestSuiteB
 
 
 	// Publication >> Search for Samples by Publication
-	
+
 	//S.N.: 60
 	//Test Name: 001_Verify_sample_search_by_publication_PubMed_ID
 	@Test
@@ -355,7 +288,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 61
 	//Test Name: 002_Verify_sample_search_by_publication_DOI
 	@Test
@@ -378,7 +311,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 62
 	//Test Name: 003_Verify_sample_search_by_publication_PubMed_ID_as_a_Curator
 	@Test
@@ -424,7 +357,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 64
 	//Test Name: 004_Verify_sample_search_by_publication_DOI_as_a_Curator
 	@Test
@@ -447,7 +380,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 65
 	//Test Name: 006_Verify_sample_search_by_publication_DOI_as_a_Researcher
 	@Test
@@ -470,10 +403,10 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
-	
-    //Publication >> Search Publication
-	
+
+
+	//Publication >> Search Publication
+
 	//S.N.: 66
 	//Test Name: 001_Verify_publication_search_by_keyword
 	@Test
@@ -495,7 +428,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 
 	//S.N.: 67
 	//Test Name: 002_Verify_publication_search_by_Publication_Type
@@ -518,7 +451,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 68
 	//Test Name: 003_Verify_publication_search_by_Research_Category
 	@Test
@@ -540,7 +473,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 69
 	//Test Name: 004_Verify_publication_search_by_PubMed_ID
 	@Test
@@ -562,7 +495,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 70
 	//Test Name: 005_Verify_publication_search_by_Digital_Object_ID
 	@Test
@@ -584,7 +517,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 71
 	//Test Name: 006_Verify_publication_contains_search_by_Publication_Title
 	@Test
@@ -606,7 +539,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 72
 	//Test Name: 006_Verify_publication_contains_search_by_Publication_Title
 	@Test
@@ -628,7 +561,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}	
-	
+
 	//S.N.: 73
 	//Test Name: 008_Verify_publication_search_by_Authors
 	@Test
@@ -672,7 +605,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}	
-	
+
 	//S.N.: 75
 	//Test Name: 010_Verify_publication_search_by_Sample_Name_equals
 	@Test
@@ -694,7 +627,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 76
 	//Test Name: 011_Verify_publication_search_by_Composition_Nanomaterial_Entity
 	@Test
@@ -716,7 +649,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 77
 	//Test Name: 011_Verify_publication_search_by_Composition_Nanomaterial_Entity
 	@Test
@@ -738,7 +671,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 78
 	//Test Name: 011_Verify_publication_search_by_Composition_Nanomaterial_Entity
 	@Test
@@ -760,7 +693,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 79
 	//Test Name: 011_Verify_publication_search_by_Composition_Nanomaterial_Entity
 	@Test
@@ -782,7 +715,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 80
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -804,7 +737,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 81
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -848,7 +781,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 83
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -870,7 +803,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 84
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -892,7 +825,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 85
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -914,7 +847,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 86
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -936,7 +869,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 87
 	//Test Name: 012_Verify_publication_search_by_Composition_Functionalizing_Entity
 	@Test
@@ -958,7 +891,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 88
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -980,7 +913,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 89
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -1002,7 +935,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 90
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -1024,7 +957,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 91
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -1046,7 +979,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 92
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -1068,7 +1001,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 93
 	//Test Name: 013_Verify_publication_search_by_Function
 	@Test
@@ -1090,7 +1023,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 94
 	//Test Name: 014_verify_publication_search_by_keyword_as_a_Curator
 	@Test
@@ -1113,7 +1046,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 95
 	//Test Name: 018_verify_publication_search_by_keyword_as_a_Researcher
 	@Test
@@ -1136,7 +1069,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	// Publication >> Add Publication
 	//S.N.: 96
 	//Test Name: 001_Verify_the_ability_to_submit_a_New_Publication_as_a_Curator
@@ -1187,12 +1120,12 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	/*
 	 * CURATION 
 	 * Review Data Pending Release to Public
 	 */
-	
+
 	//S.N.: 98
 	//Test Name: 001_Verify_Curator_should_be_able_to_review_pending_data
 	@Test
@@ -1219,11 +1152,11 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
-	 /*
-	  * CURATION 
-	  * Remove Struts from CURATION page
-	  */
+
+	/*
+	 * CURATION 
+	 * Remove Struts from CURATION page
+	 */
 
 	//S.N.: 99
 	//Test Name: 001_Ensure_Struts_has_been_removed_from_Manage_Curation_page
@@ -1251,7 +1184,7 @@ public class TestSuiteB
 			Test.setupAfterSuite();
 		}			
 	}
-	
+
 	//S.N.: 100
 	//Test Name: 002_Ensure_Struts_has_been_removed_from_Review_By_Curator_page
 	@Test
@@ -1287,9 +1220,9 @@ public class TestSuiteB
 		hostName = System.getProperty(HOST_NAME);
 		seleniumUrl = hostName + "/caNanoLab/";
 	}
-	
+
 	@After
-	  public void tearDown() throws Exception {
+	public void tearDown() throws Exception {
 		Test.shutdown();
-	  }
+	}
 }

@@ -38,7 +38,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.TextField;
 
 
-public class pdfGenerator {
+public class PdfGenerator {
 	public PdfPTable bTable;
 	public Document document = new Document(PageSize.A4, 36, 36, 78, 36);;
 	public PdfPCell resultCell;

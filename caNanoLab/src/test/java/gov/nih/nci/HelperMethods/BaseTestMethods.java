@@ -49,9 +49,10 @@ import org.apache.log4j.Logger;
  *Description: This class is the base class where all the test methods are created.
  *Change History: 
 */
-public class BaseTestMethods {
+public class BaseTestMethods
+{
 	public static final String fileLocation = System.getProperty("user.dir")+"/TestResults/";
-	public pdfGenerator oPDF;
+	public PdfGenerator oPDF;
 	public Document document;
 	public PdfPTable bTable;
 	public static int stepCount = 1;
@@ -73,7 +74,7 @@ public class BaseTestMethods {
 	protected String subWindowHandler = null;	
 //SETUP methods	
 	public void setupBeforeSuite(String seleniumBrowser, String seleniumUrl, String testName, String testDesc) {
-		oPDF = new pdfGenerator();
+		oPDF = new PdfGenerator();
 		document = oPDF.document;	
 		if (seleniumBrowser.equals("ie")){
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
@@ -95,8 +96,8 @@ public class BaseTestMethods {
 		}
 		selenium.get(seleniumUrl);
 		if (seleniumBrowser.equals("ie")){
-		selenium.manage().window().maximize();
-		selenium.navigate().to("javascript:document.getElementById('overridelink').click()");
+			selenium.manage().window().maximize();
+			selenium.navigate().to("javascript:document.getElementById('overridelink').click()");
 		}
 		
 		dir=new File(fileLocation + testName + "-" + Date_MM_DD_YYYY());
