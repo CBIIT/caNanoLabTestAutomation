@@ -24,10 +24,6 @@ public class TestSuiteB
 
 	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
 
-	private String seleniumBrowser;	//firefox
-	private String hostName;	//https://cananolab-qa.nci.nih.gov";
-	public String seleniumUrl;
-
 	//S.N.: 51
 	//Test Name: 009_verify_sample_search_by_characterization_type
 	@Test
