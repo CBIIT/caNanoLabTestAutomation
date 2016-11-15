@@ -58,8 +58,8 @@ public class BaseTestMethods
 	public static int stepCount = 1;
 	public static File dir;
 	public static final String timeout = "120000";
-	public static String seleniumBrowser;
-	public static String seleniumUrl;
+	/*public static String seleniumBrowser;
+	public static String seleniumUrl;*/
 	public static String appRelease = "cananoLab v2.2";
 	public static String releaseDesc = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal.";
 	public static int speed = 50;
@@ -71,26 +71,28 @@ public class BaseTestMethods
 	}	
 	protected WebDriver selenium = null;
 	protected String parentWindowHandler = null;  // Store your parent window
-	protected String subWindowHandler = null;	
+	protected String subWindowHandler = null;
+	
 //SETUP methods	
-	public void setupBeforeSuite(String seleniumBrowser, String seleniumUrl, String testName, String testDesc) {
+	public void setupBeforeSuite(String seleniumBrowser, String seleniumUrl, String testName, String testDesc)
+	{	
 		oPDF = new PdfGenerator();
-		document = oPDF.document;	
+		document = oPDF.document;
 		if (seleniumBrowser.equals("ie")){
 			DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
 			capabilities.setCapability(InternetExplorerDriver.
-			                 INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true); 
-			File file = new File("C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\IEDriverServer.exe");
+					INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true); 
+			File file = new File(TestConstants.browserDriverPath);
 			System.setProperty("webdriver.ie.driver", file.getAbsolutePath());
 			selenium = new InternetExplorerDriver(capabilities);
 			selenium.manage().timeouts().implicitlyWait(3000,  TimeUnit.SECONDS);
-		
+
 		} else if (seleniumBrowser.equals("firefox")){
-			System.setProperty("webdriver.firefox.bin","/Applications/Firefox ESR.app/Contents/MacOS/firefox-bin");
+			System.setProperty("webdriver.firefox.bin", TestConstants.browserDriverPath);
 			selenium = new FirefoxDriver();
-		
+
 		} else if (seleniumBrowser.equals("chrome")){
-			File file = new File("C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\chromedriver.exe");
+			File file = new File(System.getProperty(TestConstants.browserDriverPath));
 			System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 			selenium = new ChromeDriver();
 		}
@@ -100,7 +102,7 @@ public class BaseTestMethods
 			selenium.navigate().to("javascript:document.getElementById('overridelink').click()");
 		}
 		
-		dir=new File(fileLocation + testName + "-" + Date_MM_DD_YYYY());
+		dir = new File(fileLocation + testName + "-" + Date_MM_DD_YYYY());
 		if(dir.exists()){
 			logger.warn("WARN: A folder with name 'new folder' is already exist in the path "+fileLocation);
 		}else{
@@ -110,7 +112,7 @@ public class BaseTestMethods
 			pdfFileName = dir + "/" + testName + "-" + DateHHMMSS2()+".pdf";
 			finalPdfFileName = dir + "/" + "final_" + testName + "-" + DateHHMMSS2()+".pdf";
 			oPDF.createPDF(pdfFileName);
-			document.add(oPDF.createHeaderTable(appRelease,releaseDesc,seleniumUrl,seleniumBrowser,"ahmeds6",Date_MM_DD_YYYY()));
+			document.add(oPDF.createHeaderTable(appRelease, releaseDesc, seleniumUrl, seleniumBrowser, "ahmeds6", Date_MM_DD_YYYY()));
 			oPDF.createBlockHeader(testName,testDesc);
 		}catch(Exception e){
 			logger.error("ERROR: PDF Report is not created. Error: " + e.getMessage());
@@ -157,18 +159,18 @@ public class BaseTestMethods
 		}catch(IOException ie){
 			System.out.println("Error Saving image files. "+ie.getMessage());
 		}
+
 		try{
 			document.close();
 			oPDF.savePDF();
 		}catch(Exception ie){
 			logger.error("ERROR: Error Saving image files. "+ie.getMessage());
 		}
-	}	
+	}
 
 	public void shutdown(){
 		selenium.quit();
 	}
-//
 
 //Verification methods	
 	

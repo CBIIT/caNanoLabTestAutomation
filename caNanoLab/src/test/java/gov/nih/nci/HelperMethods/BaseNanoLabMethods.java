@@ -36,7 +36,8 @@ import java.awt.event.KeyEvent;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class BaseNanoLabMethods extends BaseTestMethods{
+public class BaseNanoLabMethods extends BaseTestMethods
+{
 	private static Logger logger=Logger.getLogger("BaseNanoLabMethods");
 	public BaseNanoLabMethods(){}	
 	
@@ -45,7 +46,7 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 	 */
 		public void launchSite() throws TestExecutionException{
 			boolean retVal;
-			if (seleniumBrowser == "ie"){
+			if (TestConstants.seleniumBrowser == "ie"){
 				click(By.id("overridelink"));
 				try {
 					implicitwait(20);
@@ -54,14 +55,16 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 					e.printStackTrace();
 				}
 			}
-			int loadCount = 1000;
+			/*int loadCount = 1000;
 			for (int c=1;c<loadCount;c++){
 				boolean getUIVal = isDisplayedTrue(By.cssSelector(".sidebarSectionNoTop tbody tr:nth-child(3) .sidebarContent .btn.btn-success.btn-xs"));
 				logger.info("Loading page condition is: ["+ getUIVal +"]");
 				if (getUIVal == true){
 					break;
 				}
-			}
+			}*/
+			
+			waitUntilElementIsPresents(By.cssSelector(".welcomeTitle"));
 			retVal = verifyTitle("caNanoLab");
 			captureScreenshot(dir+"/snapshots/LoginPage.png");
 			
@@ -7169,6 +7172,11 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		 */
 		// Following method will validate sample search by publication	
 		public void Verify_sample_search_by_publication_PubMed_ID(String pbmedid, String pubRef) throws TestExecutionException {
+			try{
+				waitUntil(By.cssSelector(".gridtableNoBorder tbody tr td a"), "Search Samples");
+			}catch (Exception e){
+			}
+			click(By.linkText("Search Samples"));
 			navigate_to_SEARCH_PUBLICATION_page();
 			enter(By.id("id"),pbmedid);
 			choosePublicationType("PubMed");
@@ -7501,9 +7509,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 			//Wait for Sample search page
 			logger.info("Waiting for Sample search page");
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"),"Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			//Navigating to Search Existing Publication page
 			navigate_to_search_existing_PUBLICATION_page();
 			//Wait for Publication Search page
@@ -7540,9 +7549,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Publication_Type() throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			selectPublicationType ("report");
@@ -7577,9 +7587,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Research_Category() throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Search Samples");
+				waitUntil(By.cssSelector(".gridtableNoBorder tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			click(By.xpath("(//input[@id='researchArea'])[3]"));
@@ -7614,9 +7625,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void test_004_Verify_publication_search_by_PubMed_ID(String pbmedid) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			enter(By.id("pubMedId"),pbmedid);
@@ -7651,9 +7663,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Digital_Object_ID(String doiid) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			enter(By.id("digitalObjectId"),doiid);
@@ -7711,12 +7724,13 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		 * 
 		 */
 		public void search_publication_title(String ttle, String getEditORAddToFavorites) throws TestExecutionException {
-			/*
+			
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Search Samples");
 			}catch (Exception e){
 			}
-			*/
+			
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			enter(By.id("title"), ttle);
@@ -7787,9 +7801,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_contains_search_by_Publication_Title(String ttle) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			enter(By.id("title"), ttle);
@@ -7827,6 +7842,7 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			select("id", "titleOperand", gOption);
@@ -7862,9 +7878,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Authors(String authr) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			enter(By.id("authorsStr"),authr);
@@ -7899,9 +7916,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Sample_Name_option(String sampCnt, String smplOpt) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			chooseSampleOptions(smplOpt);
@@ -7937,9 +7955,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Composition_Nanomaterial_Entity(String smplOpt) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			chooseCompNanoEntityOptions(smplOpt);
@@ -7974,9 +7993,10 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		public void Verify_publication_search_by_Composition_Functionalizing_Entity(String smplOpt) throws TestExecutionException {
 			//
 			try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
 			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			//
 			chooseCompFuncEntityOptions(smplOpt);
@@ -8010,10 +8030,11 @@ public class BaseNanoLabMethods extends BaseTestMethods{
 		 */
 		public void Verify_publication_search_by_Function(String smplOpt) throws TestExecutionException {
 			//
-			/*try{
-				waitUntil(By.cssSelector(".contentTitle tbody tr th"), "Sample Search");
+			try{
+				waitUntil(By.cssSelector(".contentTitle tbody tr td a"), "Search Samples");
 			}catch (Exception e){
-			}*/
+			}
+			click(By.linkText("Search Samples"));
 			navigate_to_search_existing_PUBLICATION_page();
 			wait_For(3000);
 			//

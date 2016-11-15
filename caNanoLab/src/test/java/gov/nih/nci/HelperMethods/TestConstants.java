@@ -6,6 +6,10 @@ public class TestConstants
 	public static final String hostName = System.getProperty("hostName");	    //https://cananolab-qa.nci.nih.gov";
 	public static final String tier = System.getProperty("tier");
 	public static final String seleniumUrl = hostName + "/caNanoLab/";
+	
+	public static final String browserDriverPath = System.getProperty("browserPath");
+	//"C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\chromedriver.exe"
+	//"C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\IEDriverServer.exe"
 
 	public static String curatorUserName = "curatorUserName";
 	public static String curatorPassword = "curatorPassword";
