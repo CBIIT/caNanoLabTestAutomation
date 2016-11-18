@@ -320,7 +320,7 @@ public class TestSuiteB
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = hostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			String manageCurationURL = hostName + "/caNanoLab/#/manageCuration";
@@ -347,7 +347,7 @@ public class TestSuiteB
 			Test.launchSite();
 			Test.login(curatorUserName, curatorPassword, "pass");
 			Test.verifyLogin(By.linkText("CURATION"));
-			String homePageURL = hostName + "/caNanoLab/#/home";
+			String homePageURL = hostName + "/caNanoLab/#/";
 			Test.verifyUrl(homePageURL);
 			Test.clickMenubarLinks("CURATION", "Manage Curation");
 			Test.clickPageLinks("Review Data Pending Release to Public", "Review By Curator");
