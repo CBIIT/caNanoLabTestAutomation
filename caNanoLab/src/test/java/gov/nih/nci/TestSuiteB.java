@@ -64,14 +64,14 @@ public class TestSuiteB
 			//Test.chooseLoginOptions("Login to submit data");
 			Test.login(researcherUserName, researcherPassword, "pass");
 			Test.navigate_to_sample_search_page();
-			Test.samples_search_simple("", "equals", "NCL-23-1", "", "", "", "", "", "", "", "search");
+			Test.samples_search_simple("", "equals", "NCL_23-1", "", "", "", "", "", "", "", "search");
 			Test.wait_For(4000);
 			//Test.sample_search_results_verification("One item found.");
 			Test.sample_search_results_verification(); //using this as a temporary solution until issue is fixed.
-			Test.view_sample_details_from_search_results_page("NCL-23-1");
-			Test.view_sample_composition_from_search_results_page("NCL-23-1");
-			Test.view_sample_characterization_from_search_results_page("NCL-23-1");
-			Test.view_sample_publication_from_search_results_page("NCL-23-1", "All");
+			Test.view_sample_details_from_search_results_page("NCL_23-1");
+			Test.view_sample_composition_from_search_results_page("NCL_23-1");
+			Test.view_sample_characterization_from_search_results_page("NCL_23-1");
+			Test.view_sample_publication_from_search_results_page("NCL_23-1", "All");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();

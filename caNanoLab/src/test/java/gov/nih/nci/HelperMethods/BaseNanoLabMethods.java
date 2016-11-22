@@ -1015,11 +1015,10 @@ public class BaseNanoLabMethods extends BaseTestMethods
 		 */
 		public String readDoc() {
 		    String textCred = "";
-		    String f = "C://My_Frameworks_creds//UserCred//Applications//caNanoLab//uCred.txt";
 		    int read, N = 1024 * 1024;
 		    char[] buffer = new char[N];
 		    try {
-		        FileReader fr = new FileReader(f);
+		        FileReader fr = new FileReader(TestConstants.credTextPath);
 		        BufferedReader br = new BufferedReader(fr);
 		        while(true) {
 		            read = br.read(buffer, 0, N);
@@ -3032,7 +3031,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 						logger.info("sampleTableCellData:["+sampleTableCellData);
 					}
 					if (getFavStatusVal.equals(getSccssConfVal)){
-						verify_sample_add_to_favorites(sampleTableCellData);
+						//verify_sample_add_to_favorites(sampleTableCellData);
 						logger.info("sampleTableCellData info:["+sampleTableCellData);
 						//start getMyFavVerificationYesOrNo verification
 						if (getMyFavVerificationYesOrNo.isEmpty()==false){

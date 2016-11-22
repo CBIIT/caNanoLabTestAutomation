@@ -10,6 +10,7 @@ public class TestConstants
 	public static final String browserDriverPath = System.getProperty("browserPath");
 	//"C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\chromedriver.exe"
 	//"C:\\My Frameworks\\WebDriver\\Application\\BrowserSupport\\IEDriverServer.exe"
+	public static final String credTextPath = "C://My_Frameworks_creds//UserCred//Applications//caNanoLab//uCred.txt";
 
 	public static String curatorUserName = "curatorUserName";
 	public static String curatorPassword = "curatorPassword";
