@@ -1750,8 +1750,8 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			click(By.linkText("SAMPLES"));
 			logger.info("Manage Samples page");
 			wait_until_element_present(By.cssSelector(".contentTitle tbody tr th"), "Manage Samples");
-			click(By.linkText("Submit a New Sample"));
-			logger.info("Clicking Submit a New Sample link");
+			click(By.linkText("Create a New Sample"));
+			logger.info("Clicking Create a New Sample link");
 		}
 		/*
 		 * 
@@ -2807,14 +2807,18 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			wait_until_element_present(By.cssSelector(".table.sample.ng-scope.ng-table thead tr th:nth-child(6)"), "Protocol File");
 			wait_until_element_present(By.cssSelector(".table.sample.ng-scope.ng-table thead tr th:nth-child(7)"), "Created Date");
 			int rCount = getRowCount(By.cssSelector(".table.sample.ng-scope.ng-table"));
+			rCount = rCount - 2;
 			String protocolTableCellData = null;
 			for (int i=1;i<rCount;i++){
 				protocolTableCellData = getText(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(3)"));
 				logger.info("Curent row:["+ i +"] and Identified value:["+ protocolTableCellData +"]");
-				if (protocolTableCellData.contains(getProtocolNameVal)){
-					clickLink(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(4)"));
+				if (protocolTableCellData.toLowerCase().contains(getProtocolNameVal.toLowerCase())){
 					String getFavStatusVal = getText(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(1)")).replaceAll("\\n", " ");
-						   logger.info("Actions Column Status:["+getFavStatusVal);
+					logger.info("Actions Column Status:["+getFavStatusVal);
+					if (getFavStatusVal.indexOf("Edit") >= 0)
+						clickLink(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(4)"));
+					else
+						clickLink(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(3)"));
 					String getBuildString = "Edit  "+ protocolTableCellData +" has already been added to your favorites"; 
 						   //logger.info("getBuildString:["+getBuildString);
 					String getSccssConfVal = "Edit  Added to Favorites"; 
@@ -3013,7 +3017,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			wait_until_element_present(By.cssSelector(".table.sample.ng-scope.ng-table thead tr th:nth-child(6)"), "Characterizations");
 			wait_until_element_present(By.cssSelector(".table.sample.ng-scope.ng-table thead tr th:nth-child(7)"), "Data Availability");
 			wait_until_element_present(By.cssSelector(".table.sample.ng-scope.ng-table thead tr th:nth-child(8)"), "Created Date");
-			int rCount = getRowCount(By.cssSelector(".table.sample.ng-scope.ng-table"));
+			int rCount = getRowCount(By.cssSelector(".table.sample.ng-scope.ng-table")) - 2;
 			String sampleTableCellData = null;
 			for (int i=1;i<rCount;i++){
 				sampleTableCellData = getText(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child("+ i +") td:nth-child(2)"));
@@ -3276,7 +3280,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 		 * 
 		 */
 		public void navigate_to_submit_samples_page() throws TestExecutionException {
-			click(By.linkText("Submit a New Sample"));
+			click(By.linkText("Create a New Sample"));
 			wait_For(3000);
 			String getManageSamples = getText(By.cssSelector(".contentTitle tbody tr th"));
 			if (getManageSamples.equals("Submit Samples")){
@@ -3714,9 +3718,10 @@ public class BaseNanoLabMethods extends BaseTestMethods
 												String getAddUser,
 												String getUserLoginName,
 												String getSubmitOrCancel) throws TestExecutionException {
+			int preCount = getRowCount(By.cssSelector(".editTableWithGrid"));
 			if (getCollbrtnGrpAdd.isEmpty()==false){
 				if (getCollbrtnGrpAdd.equals("Add")){
-					click(By.cssSelector(".submissionView tbody tr td button"));
+					click(By.cssSelector(".submissionView tbody tr:nth-child(4) td:nth-child(2) button"));
 					element_load_by_expected_value(By.cssSelector(".subSubmissionView tbody tr th"), "Collaboration Group Information");
 					element_display(By.id("groupName"));
 					element_display(By.id("groupDescription"));
@@ -3770,17 +3775,17 @@ public class BaseNanoLabMethods extends BaseTestMethods
 						wait_For(1000);
 						String loadLoginVal = getAttribute(By.cssSelector(".promptbox tbody tr:nth-child(1) td:nth-child(2) .ng-pristine.ng-valid"), "value");
 						if (loadLoginVal.equals("benhamm")){
-							select("id", "roleName", "read");
+							//select("id", "roleName", "read");
 							wait_For(2000);
 							click(By.cssSelector(".promptbox  tbody:nth-child(1)  tr:nth-child(2)  td:nth-child(2)  div:nth-child(1)  button:nth-child(2)"));
 							wait_For(25000);
-							click(By.cssSelector(".subSubmissionView > tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2) > button:nth-child(2)"));
+							//click(By.cssSelector(".subSubmissionView > tbody:nth-child(1) > tr:nth-child(6) > td:nth-child(2) > button:nth-child(2)"));
 							element_display_false(By.id("roleName"));
 							
 							wait_For(25000);
 							break;
 						} else {
-							select("id", "roleName", "read update delete");
+							//select("id", "roleName", "read update delete");
 							wait_For(2000);
 							click(By.cssSelector(".promptbox  tbody:nth-child(1)  tr:nth-child(2)  td:nth-child(2)  div:nth-child(1)  button:nth-child(2)"));
 							wait_For(25000);
@@ -3793,15 +3798,15 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			//{{{{{{
 			
 			//Group Name
-				enter(By.id("groupName"), geneCollbGrName);
+				//enter(By.id("groupName"), geneCollbGrName);
 			//Group Description
-				enter(By.id("groupDescription"), geneCollbGrDesc);
+				//enter(By.id("groupDescription"), geneCollbGrDesc);
 			
 			//}}}}}}
 			
 			//Submit or Cancel
 			if (getSubmitOrCancel.equals("Submit")){
-				int preCount = getRowCount(By.cssSelector(".editTableWithGrid"));
+				//int preCount = getRowCount(By.cssSelector(".editTableWithGrid"));
 				click(By.cssSelector(".subSubmissionView tbody tr:nth-child(6) td:nth-child(2) button:nth-child(2)"));
 				element_display_false(By.cssSelector(".subSubmissionView tbody tr:nth-child(6) td:nth-child(2) button:nth-child(2)"));
 				wait_For(25000);
@@ -6529,7 +6534,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			//click(By.linkText("Submit a New Protocol"));
 			String protocolPageUrl = getUrl();
 			logger.info("Current URL: ["+ protocolPageUrl +"]");
-			verifyLinkOnThePage(By.linkText("Submit a New Protocol"));
+			verifyLinkOnThePage(By.linkText("Create a New Protocol"));
 			logger.info("Closing current Browser window");
 			close();
 			openNewBrowserWindow(browserType);
@@ -6541,11 +6546,11 @@ public class BaseNanoLabMethods extends BaseTestMethods
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			verifyLinkNotPresentOnThePage(By.linkText("Submit a New Protocol"));
+			verifyLinkNotPresentOnThePage(By.linkText("Create a New Protocol"));
 			//Need to verify with the Dev team if below seeion out message is not expected
 			//boolean retVal = isTextPresent("User is not logged in or session is expired.  Please log in.");
-			boolean retVal1 = isNotDisplayed(By.linkText("Submit a New Protocol"));
-			boolean retVal2 = isNotEnabled(By.linkText("Submit a New Protocol"));
+			boolean retVal1 = isNotDisplayed(By.linkText("Create a New Protocol"));
+			boolean retVal2 = isNotEnabled(By.linkText("Create a New Protocol"));
 			captureScreenshot(dir+"/snapshots/loginErrorPage.png");
 			if (retVal1 == true && retVal2 == true){
 				logger.error("Login session verification failed");
@@ -6724,7 +6729,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
-			click(By.linkText("Submit a New Sample"));
+			click(By.linkText("Create a New Sample"));
 		}
 		/*
 		 * 
@@ -6779,7 +6784,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 				e.printStackTrace();
 			}
 			verifyManageProtocols ();
-			click(By.linkText("Submit a New Protocol"));
+			click(By.linkText("Create a New Protocol"));
 		}
 		/*
 		 * 
@@ -6833,7 +6838,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 				waitUntil(By.cssSelector(".contentTitle tbody tr th"),"Manage Publications");
 			}catch (Exception e){
 			}			
-			click(By.linkText("Submit a New Publication"));
+			click(By.linkText("Create a New Publication"));
 		}
 		/*
 		 * 
@@ -6887,7 +6892,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			}
 			String option1 = "Manage Protocols"; 
 			String option2 = "PROTOCOL LINKS";
-			String option3 = "Submit a New Protocol";
+			String option3 = "Create a New Protocol";
 			String option4 = "Search Existing Protocols";
 			String option5 = "This is the manage protocols section. A protocol is a predefined procedural method used in the design and implementation of assays. For example, a protocol could describe the steps a laboratory used for characterizing nanomaterials. In this section, depending on your authorization level, you may submit a new protocol, or search for an existing protocol.";
 			captureScreenshot(dir+"/snapshots/manageProtocolsPage.png");
@@ -6909,7 +6914,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			}
 			String option1 = "Manage Samples"; 
 			String option2 = "SAMPLE LINKS";
-			String option3 = "Submit a New Sample";
+			String option3 = "Create a New Sample";
 			String option4 = "Copy an Existing Sample";
 			String option5 = "Search Existing Samples";
 			String option6 = "This is the manage samples section which allows users to enter general information about the sample, detailed information about the composition of the sample, and information about the physico-chemical, in vitro, and other characterizations performed on the sample. A sample is a formulation of a base nanomaterial platform and any additional components that contribute to the function(s) of the nanomaterial. A sample can also be a control used in comparative analysis. In this section, depending on your authorization level, you may submit new sample information or search for an existing sample for editing, copying, viewing, printing, or exporting.";
@@ -6933,7 +6938,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			}
 			String option1 = "Manage Publications"; 
 			String option2 = "PUBLICATION LINKS";
-			String option3 = "Submit a New Publication";
+			String option3 = "Create a New Publication";
 			String option4 = "Search Existing Publications";
 			String option5 = "Search for Samples by Publication";
 			String option6 = "This is the manage publications section. Publications can include book chapters, editorials, peer review articles, reports, reviews and other forms of documents. In this section, depending on your authorization level, you may submit a new publication or search for an existing publication.";
@@ -10842,7 +10847,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 						element_load(By.id("matchedGroupNameSelect"));
 						select("id", "matchedGroupNameSelect", readCollbGrpNm);
 						wait_For(1000);
-						select("id", "roleName", "read update delete");
+						select("id", "roleName", "READ WRITE DELETE");
 						wait_For(1000);
 						click(By.cssSelector(".subSubmissionView tbody tr:nth-child(5) td:nth-child(2) div input:nth-child(1)"));
 						element_display_false(By.cssSelector(".subSubmissionView tbody tr:nth-child(5) td:nth-child(2) div input:nth-child(1)"));
@@ -10943,7 +10948,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 					break;
 				}
 			}
-			boolean getCopyBtnf = isDisplayedTrue(By.cssSelector(".btn.btn-danger"));
+			boolean getCopyBtnf = isDisplayedTrue(By.cssSelector(".btn.btn-default"));
 			logger.info("getCopyBtnf["+getCopyBtnf);
 			if (getCopyBtnf == false){
 				logger.error("Sample Copy button does not exists. Test Failed.");
@@ -10960,7 +10965,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 		public void verify_sample_delete_button() throws TestExecutionException {
 			int verifyCount = 10000;
 			for (int i=1;i<verifyCount;i++){
-				boolean getDeleteBtn = isDisplayedTrue(By.cssSelector(".btn.btn-danger"));
+				boolean getDeleteBtn = isDisplayedTrue(By.cssSelector(".btn.btn-primary"));
 				logger.info("getDeleteBtn["+getDeleteBtn);
 				if (getDeleteBtn == true){
 					logger.info("Delete button exists for the current Sample");
@@ -10969,7 +10974,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 					break;
 				}
 			}
-			boolean getDeleteBtnf = isDisplayedTrue(By.cssSelector(".btn.btn-danger"));
+			boolean getDeleteBtnf = isDisplayedTrue(By.cssSelector(".btn.btn-primary"));
 			logger.info("getDeleteBtnf["+getDeleteBtnf);
 			if (getDeleteBtnf == false){
 				logger.error("Sample Delete button does not exists. Test Failed.");
@@ -10984,7 +10989,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 		 * Verify Sample submit header
 		 */
 		public void verify_sample_submit_header(String getSampleName) throws TestExecutionException {
-			String getBldUpdatTxt = "Update "+ getSampleName +" Sample";
+			String getBldUpdatTxt = "Update Sample";
 			int verifyCount = 10000;
 			for (int i=1;i<verifyCount;i++){
 				String expSampleHeaderVal = getText(By.cssSelector(".contentTitle tbody tr th")).replaceAll("\\n", "");
@@ -11065,19 +11070,26 @@ public class BaseNanoLabMethods extends BaseTestMethods
 				waitUntilElementVisible(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr td:nth-child(1)"));
 				}catch (Exception e){
 				}
-				String getAccessUserName = null;
-				if (gUserName.equals("canano_res")){
-					verify_access(gUserName);
-					getAccessUserName = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(2) td:nth-child(1)")).replaceAll("\\n", "");
-					logger.info("getAccessUserName:["+getAccessUserName);
-				} else if(!gUserName.equals("canano_res")){
-					verify_access_others(gUserName);
-					getAccessUserName = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(3) td:nth-child(1)")).replaceAll("\\n", "");
-					logger.info("getAccessUserName:["+getAccessUserName);
-				}
+				
 				String getAccessTag = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr th:nth-child(1)")).replaceAll("\\n", "");
 				logger.info("AccessTag:["+ getAccessTag +"]");
-				if (getAccessTag.contains("User Login Name") && getAccessUserName.contains(gUserName)){
+				
+				int accessCount = getRowCount(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody"));
+				String[] getAccessUserName = new String[accessCount -1];
+				boolean accessNameFound = false;
+				if (gUserName.equals("canano_res")){
+					verify_access(gUserName);
+				} else if(!gUserName.equals("canano_res")){
+					verify_access_others(gUserName);
+				}
+				for (int i=0;i<getAccessUserName.length;i++){
+					getAccessUserName[i] = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(" + (i + 2) + ") td:nth-child(1)")).replaceAll("\\n", " ");
+					logger.info("getAccessUserName[i] = " + getAccessUserName[i]);
+					if (getAccessUserName[i].contains(gUserName))
+						accessNameFound = true;
+				}
+				
+				if (getAccessTag.contains("User Login Name") && accessNameFound){
 					logger.info("Access Added successfully for the User:["+ gUserLoginName +"]");
 					oPDF.enterBlockSteps(bTable,stepCount, "Add Access Role Verification", "access_to_the_sample", "Access Added successfully for the User:["+ gUserLoginName +"]","Pass");
 					stepCount++;
@@ -11099,7 +11111,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			element_display(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(2) td:nth-child(1)"));
 			int verifyCount = 10000;
 			for (int i=1;i<verifyCount;i++){
-				String expAccessVal = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(2) td:nth-child(1)")).replaceAll("\\n", " ");
+				String expAccessVal = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(" + (i + 1) + ") td:nth-child(1)")).replaceAll("\\n", " ");
 				logger.info("expAccessVal["+expAccessVal);
 				if (expAccessVal.contains(getAccess)){
 					logger.info("Successfully Sample Access Added to the Sample");
@@ -11111,10 +11123,10 @@ public class BaseNanoLabMethods extends BaseTestMethods
 		 * 
 		 */
 		public void verify_access_others(String getAccess) throws TestExecutionException {
-			element_display(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(3) td:nth-child(1)"));
+			element_display(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(2) td:nth-child(1)"));
 			int verifyCount = 10000;
 			for (int i=1;i<verifyCount;i++){
-				String expAccessVal = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(3) td:nth-child(1)")).replaceAll("\\n", " ");
+				String expAccessVal = getText(By.cssSelector(".editTableWithGrid.ng-scope:nth-child(5) tbody tr:nth-child(2) td:nth-child(1)")).replaceAll("\\n", " ");
 				logger.info("expAccessVal["+expAccessVal);
 				if (expAccessVal.contains(getAccess)){
 					logger.info("Successfully Sample Access Added to the Sample");
