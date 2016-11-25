@@ -8,13 +8,90 @@ import gov.nih.nci.HelperMethods.BaseNanoLabMethods;
 import org.junit.*;
 import org.apache.log4j.Logger;
 
-import static gov.nih.nci.HelperMethods.TestConstants.*;
-
-public class TestSuiteGeneralTests
-{
-	private static Logger logger = Logger.getLogger("TestSuite");
-	
+public class TestSuiteGeneralTests {
 	static BaseNanoLabMethods Test = new BaseNanoLabMethods();
+	private static Logger logger=Logger.getLogger("TestSuite");
+	public static String seleniumBrowser = "firefox";
+	public static String tier = "dev";
+	//public static String HostName = "http://localhost:9090";
+	public static String HostName = "https://cananolab-qa.nci.nih.gov";
+	//public static String HostName = "https://cananolab-qa-sg.nci.nih.gov";
+	//public static String HostName = "http://nciws-q438-v:18080";
+	//public static String HostName = "http://ncias-d1360-v.nci.nih.gov:18080";
+	public static String seleniumUrl = HostName + "/caNanoLab/";	
+	public static String curatorUserName = "curatorUserName";
+	public static String curatorPassword = "curatorPassword";
+	public static String researcherUserName = "researcherUserName";
+	public static String researcherPassword = "researcherPassword";
+		
+	//Application configuration
+	public static String applinkHOME = "HOME";
+	public static String applinkPROTOCOLS = "PROTOCOLS";
+	public static String applinkSAMPLES = "SAMPLES";
+	public static String applinkPUBLICATIONS = "PUBLICATIONS";
+	public static String applinkCURATION = "CURATION";
+	public static String applinkMYWORKSPACE = "MY WORKSPACE";
+	public static String applinkHELP = "HELP";
+	public static String applinkLOGOUT = "LOGOUT";
+	public static String applinkGLOSSARY = "GLOSSARY";
+	public static String applinkCONTACTUS = "CONTACT US";
+	public static String applinkPRIVACYNOTICE = "PRIVACY NOTICE";
+	public static String applinkDISCLAIMER = "DISCLAIMER";
+	public static String applinkACCESSIBILITY = "ACCESSIBILITY";
+	public static String applinkAPPLICATIONSUPPORT = "APPLICATION SUPPORT";
+	
+	public static String applinkcaNanoLabWiki = "caNanoLab Wiki";
+	public static String applinkNCICBIITHome = "NCI CBIIT Home";
+	public static String applinkNCLHome = "NCL Home";
+	public static String applinkNCLCSNHome = "NCL CSN Home";
+	public static String applinkNCINanoAllianceHome = "NCI Nano Alliance Home";
+	public static String applinkNCIHome = "NCI Home";
+	public static String applinkNanotechnologyWorkingGroup = "Nanotechnology Working Group";
+	public static String applinkNanoHubs = "Nano Hubs";
+	public static String applinkDisclaimer = "Disclaimer";
+	public static String applinkNBI = "NBI";
+	public static String applinkNIOSHNIL = "NIOSH NIL";
+	public static String applinkInterNano = "InterNano";
+	public static String applinknanoHUB = "nanoHUB";
+	public static String applinkICON = "ICON";
+	public static String applinkSAFENANO = "SAFENANO";
+	public static String applinkOECD = "OECD";
+	public static String applinkeNanoMapper = "eNanoMapper";
+	public static String applinkNanomaterialRegistry = "Nanomaterial Registry";
+	
+	public static String applinkFAQ = "FAQ";
+	public static String applinkOnlineHelp = "Online Help";
+	public static String applinkSearchProtocols = "Search Protocols";
+	public static String applinkSearchSamples = "Search Samples";
+	public static String applinkSearchPublications = "Search Publications";
+	public static String applinkDownload = "download";
+	public static String applinkReleaseNotes = "caNanoLab Release Notes";
+	
+	//How to Section
+	public static String applinkHowDoISubmitData = "How do I submit data into caNanoLab?";
+	public static String applinkHowDoIFindNanotechnologyProtocols = "How do I find nanotechnology protocols?";
+	public static String applinkHowDoIFindNanotechnologyPublications = "How do I find Nanotechnology publications?";
+
+	public static String applinkHowCanISearchForNanomaterials = "How can I search for nanomaterials, composition annotations, and characterizations?";
+	public static String applinkHowCanISearchForNanomaterialsCharacterizations = "How can I add nanomaterial characterizations?";
+	public static String applinkHowCanIGetDefinitionsFor = "Where can I get definitions for nanotechnology concepts?";
+	
+	public static String applinkHowDoIIncorporate = "How do I incorporate caNanoLab into a data sharing plan?";
+	
+	//Application Confirmation Message
+	public static String registrationSubmitConfMessage = "Your registration request has been sent to the administrator for assignment of your User ID and Password. You should receive this information via e-mail within one business day from time of submission.";
+	public static String sampleSubmitConfMessage = "";
+	public static String publicationSubmitConfMessage = "";
+	public static String protocolSubmitConfMessage = "";
+	public static String appWelcomeMessage = "Welcome to the cancer Nanotechnology Laboratory (caNanoLab) portal. caNanoLab is a data sharing portal designed to facilitate information sharing across the international biomedical nanotechnology research community to expedite and validate the use of nanotechnology in biomedicine. caNanoLab provides support for the annotation of nanomaterials with characterizations resulting from physico-chemical, in vitro and in vivo assays and the sharing of these characterizations and associated nanotechnology protocols in a secure fashion.";
+	
+	//Application CSS Configuration
+	public static String appCSSUserActions = "td.sidebarContent";
+	
+	public TestSuiteGeneralTests(){
+		BaseTestMethods.appRelease = "cananoLab v2.1";
+		BaseTestMethods.releaseDesc = "caNanoLab v2.1 is refactored using AngularJS as the Front-end framework and JAVA REST services as the middle-tier";
+	}	
 		
 	//S.N.: 1
 	//Test Name: 003_Login_as_Researcher
@@ -295,7 +372,7 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+/*	
 	//S.N.: 14
 	//Test Name: 004_Verify_Option_Reset_Password
 	@Test
@@ -317,7 +394,7 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+*/	
 	//S.N.: 15
 	//Test Name: 007_Verify_caNanoLab_Feature_section_content
 	@Test
@@ -329,7 +406,7 @@ public class TestSuiteGeneralTests
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			String featuresSection = "caNanoLab provides access to information on:Nanotechnology ProtocolsNanomaterial CompositionNanomaterial Characterizations (physic-chemical, in vitro, in vivo)Nanomaterial PublicationsFor additional information, see the caNanoLab FAQ or Online Help";
-			Test.actual_with_expected_xpath_text_verification(featuresSection, "//td[2]/table/tbody/tr[6]/td");
+			Test.actual_with_expected_xpath_text_verification(featuresSection, "/html/body/div/table/tbody/tr[3]/td[2]/table/tbody/tr[2]/td/div[1]/table/tbody/tr/td[2]/table/tbody/tr[5]/td");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -339,7 +416,7 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+/*	
 	//S.N.: 16
 	//Test Name: 008_Regsiter_New_User_Required_Fields_only
 	@Test
@@ -371,7 +448,8 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+	*/
+	/*
 	//S.N.: 17
 	//Test Name: 009_Regsiter_New_User_All_Fields
 	@Test
@@ -403,7 +481,8 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+	*/
+/*	
 	//S.N.: 18
 	//Test Name: 011_Verify_User_Regsitration_with_Invalid_Values
 	@Test
@@ -425,10 +504,10 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+*/	
 	//S.N.: 19
 	//Test Name: 012_Verify_Reset_user_registration_Fields
-	@Test
+/*	@Test
 	public void verifyResetOptionInUserRegistrationPage() throws Exception{
 		String testName = "012_Verify_Reset_user_registration_Fields";
 		String testDesc = "Verification of the user registration 'reset' functionality by proving all the fields and clearing the values entered by clicking on the reset button";
@@ -446,7 +525,7 @@ public class TestSuiteGeneralTests
 			Test.setupAfterSuite();		
 		}		
 	}
-	
+	*/
 	//S.N.: 20
 	//Test Name: 010_Verify_Help_pages(1)
 	@Test
@@ -528,7 +607,7 @@ public class TestSuiteGeneralTests
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			Test.verifyPopupPage(By.linkText("NCI CBIIT Home"), "National Cancer Informatics Program");
-			Test.verifyUrl("http://cbiit.nci.nih.gov/");
+			Test.verifyUrl("https://cbiit.nci.nih.gov/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -550,7 +629,7 @@ public class TestSuiteGeneralTests
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			Test.verifyPopupPage(By.linkText("NCL Home"), "Nanotechnology Characterization Lab");
-			Test.verifyUrl("http://ncl.cancer.gov/");
+			Test.verifyUrl("https://nanolab.cancer.gov/");
 			Test.switchToParentBrowser();
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -572,8 +651,8 @@ public class TestSuiteGeneralTests
 			logger.info("---------------Begin Test case: " + testName + "--------------");
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
-			Test.verifyPopupPage(By.linkText("NCL CSN Home"), "HOME");
-			Test.verifyUrl("http://uqbar.ncifcrf.gov/Advanced_Structure_Analysis/HOME.html");
+			Test.verifyPopupPage(By.linkText("NCL Home"), "Nanotechnology Characterization Lab");
+			Test.verifyUrl("https://nanolab.cancer.gov/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -595,7 +674,7 @@ public class TestSuiteGeneralTests
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			Test.verifyPopupPage(By.linkText("NCI Home"), "Comprehensive Cancer Information - National Cancer Institute");
-			Test.verifyUrl("http://www.cancer.gov/");
+			Test.verifyUrl("https://www.cancer.gov/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -664,7 +743,7 @@ public class TestSuiteGeneralTests
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
 			Test.verifyPopupPage(By.linkText(applinkDisclaimer), "LEGAL RULES OF THE ROAD");
-			Test.verifyUrl(hostName+"/caNanoLab/html/cananoDisclaimer.html");
+			Test.verifyUrl(HostName+"/caNanoLab/html/cananoDisclaimer.html");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -773,8 +852,8 @@ public class TestSuiteGeneralTests
 			logger.info("---------------Begin Test case: " + testName + "--------------");
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
-			Test.verifyPopupPage(By.linkText("ICON"), "This work is supported in part by the Nanoscale Science and Engineering Initiative of the National Science Foundation");
-			Test.verifyUrl("http://icon.rice.edu/research.cfm");
+			Test.verifyPopupPage(By.linkText("ICON"), "Our current and prospective industrial partners have strongly encouraged us to go beyond");
+			Test.verifyUrl("http://cben.rice.edu/industry/icon.aspx");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -795,7 +874,7 @@ public class TestSuiteGeneralTests
 			logger.info("---------------Begin Test case: " + testName + "--------------");
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
-			Test.verifyPopupPage(By.linkText("SAFENANO"), "� IOM SAFENANO");
+			Test.verifyPopupPage(By.linkText("SAFENANO"), "© IOM SAFENANO");
 			Test.verifyUrl("http://www.safenano.org/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -817,8 +896,8 @@ public class TestSuiteGeneralTests
 			logger.info("---------------Begin Test case: " + testName + "--------------");
 			Test.setupBeforeSuite(seleniumBrowser , seleniumUrl, testName, testDesc);
 			Test.launchSite();
-			Test.verifyPopupPage(By.linkText("OECD"), "STInano - OECD");
-			Test.verifyUrl("http://www.oecd.org/sti/nano/");
+			Test.verifyPopupPage(By.linkText("OECD"), "STInano");
+			Test.verifyUrl("https://www.oecd.org/sti/nano/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
@@ -841,7 +920,7 @@ public class TestSuiteGeneralTests
 			Test.launchSite();
 			Test.verifyPopupPage(By.linkText("eNanoMapper"), "");
 			Test.verifyElementOnThePage(By.cssSelector("img[alt=\"Home\"]"));
-			Test.verifyUrl("http://enanomapper.net/");
+			Test.verifyUrl("https://enanomapper.net/");
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
 			Test.setupAfterSuite();
