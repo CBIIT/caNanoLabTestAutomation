@@ -340,8 +340,8 @@ public class TestSuiteE
 			Test.login(researcherUserName, researcherPassword, "pass");
 			Test.remove_my_favorites_publication_all();
 			Test.navigate_to_publication_search_page();
-			Test.publication_search("", "", "", "", "contains", "Test Submit publication", "", "", "", "", "", "", "", "search", "yes");
-			Test.publication_add_to_favorites("Test Submit Publication", "yes", "view");
+			Test.publication_search("", "", "", "", "contains", "doped nanoshells", "", "", "", "", "", "", "", "search", "yes");
+			Test.publication_add_to_favorites("doped nanoshells", "yes", "view");
 			Test.wait_For(5000);
 			logger.info("---------------End of Test "+ testName + "--------------------------------------");
 			logger.info("Test "+testName+ " Passed");
@@ -610,16 +610,16 @@ public class TestSuiteE
 					"endosomolysis description", /****getComEleInherentDescription ***/
 					"Save", /****getInherentFunctionSaveOrCancelOrRemove ***/
 					"Save", /****getCompositionElementSaveOrCancel ***/
-					"Add", /****getFileAdd***/
-					"Upload", /****getFileUpload***/
+					"", /****getFileAdd***/
+					"", /****getFileUpload***/
 					"", /****getFileEnterFileURL***/
-					"SamplesFile", /****getFileUploadBrowse***/
+					"", /****getFileUploadBrowse***/
 					"", /****getFileEnterFileURLAddress***/
-					"image", /****getFileType***/
-					"Test Sample Image", /****getFileTitle***/
-					"Test Image", /****getFileKeywords***/
-					"Test Image Description", /****getFileDescription***/
-					"Save", /****getFileSaveOrCancel***/
+					"", /****getFileType***/
+					"", /****getFileTitle***/
+					"", /****getFileKeywords***/
+					"", /****getFileDescription***/
+					"", /****getFileSaveOrCancel***/
 					"", /****getCopyToTheOtherSample ***/
 					"Submit" /****getSubmitOrReset ***/);
 			Test.wait_For(5000);
@@ -833,7 +833,7 @@ public class TestSuiteE
 
 	//S.N.: 223
 	//Test Name: 005_Ensure Curator User able to submit a Composition File to the sample 
-	@Test
+	//@Test
 	public void ensureCuratorUserAbleToSubmitACompositionFileToTheSample() throws Exception {
 		String testName = "005_Ensure Curator User able to submit a Composition File to the sample";
 		String testDesc = "Ensure Curator User able to submit a Composition File to the sample"; 

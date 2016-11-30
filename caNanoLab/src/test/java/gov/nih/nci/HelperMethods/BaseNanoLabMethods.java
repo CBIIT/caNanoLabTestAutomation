@@ -2669,8 +2669,8 @@ public class BaseNanoLabMethods extends BaseTestMethods
 						Assert.fail(e.getMessage());
 					}
 				}
+				String actionText = getText(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1)"));
 				if (getValViewOrEditOrRemove.equals("edit")){
-					String actionText = getText(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1)"));
 					if (actionText.contains("View"))
 						clickLink(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(2)"));
 					else
@@ -2679,7 +2679,12 @@ public class BaseNanoLabMethods extends BaseTestMethods
 					verify_publication_edit_val(getPublicationNameSearchVal);
 				}					
 				if (getValViewOrEditOrRemove.equals("remove")){
-					clickLink(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(4)"));
+					if (actionText.contains("View") && actionText.contains("Edit"))
+						clickLink(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(4)"));
+					else if (actionText.contains("Edit"))
+						clickLink(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(3)"));
+					else
+						clickLink(By.cssSelector(".table.publication tbody tr:nth-child("+ i +") td:nth-child(1) a:nth-child(2)"));
 					checkAlertOK();
 					wait_For(5000);
 					verify_publication_remove_by_name(getPublicationNameSearchVal);
@@ -5058,7 +5063,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			boolean getResultsVal = false;
 			int loadCount = 500;
 			for (int r=2;r<loadCount;r++){
-				getResultsVal = isDisplayedTrue(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child(1) td:nth-child(1) a:nth-child(1)"));
+				getResultsVal = isDisplayedTrue(By.cssSelector(".table.sample.ng-scope.ng-table tbody tr:nth-child(1) td:nth-child(1)")); //a:nth-child(1)
 				if (getResultsVal == true){
 					logger.info("Publication search results displayed successfully on the Publication Search Results page");
 					logger.info("Publication Search Results Table Verification Successful");
@@ -7019,7 +7024,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			e.printStackTrace();
 		}
 		// Submit Protocol Form
-		String option1 = "Submit Protocol"; 
+		String option1 = "Create Protocol"; 
 		String option2 = "Protocol Type *";
 		String option3 = "Protocol Name*";
 		String option4 = "Protocol Abbreviation"; 
@@ -11723,7 +11728,7 @@ public class BaseNanoLabMethods extends BaseTestMethods
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		click(By.xpath("html/body/div[1]/table/tbody/tr[3]/td[2]/table/tbody/tr[2]/td/div[1]/div/form/table[3]/tbody/tr/td[2]/input[2]"));
+		click(By.xpath("html/body/div[1]/table/tbody/tr[3]/td[2]/table/tbody/tr[2]/td/div[1]/div/form/table[3]/tbody/tr/td[2]/button[2]"));
 		logger.info("Button: Clicked [ Submit ] button");
 		try {
 			_wait(7000);
